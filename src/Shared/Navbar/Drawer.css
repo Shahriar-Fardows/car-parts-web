@@ -1,0 +1,32 @@
+
+.drawer-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Adjust as needed */
+    width: 300px; /* Adjust as needed */
+    height: 100%;
+    background: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+  }
+  
+  .drawer.open {
+    left: 0;
+  }
+  
+  .toggle-btn {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
