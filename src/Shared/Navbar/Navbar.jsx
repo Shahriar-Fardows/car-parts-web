@@ -35,7 +35,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+          className="text-gray-900  dark:text-white hover:underline"
           aria-current="page"
         >
           Parts
@@ -43,7 +43,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+          className="text-gray-900  dark:text-white hover:underline"
           aria-current="page"
         >
           Wheels & Tires
@@ -51,7 +51,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+          className="text-gray-900  dark:text-white hover:underline"
           aria-current="page"
         >
           Exterior
@@ -59,7 +59,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+          className="text-gray-900  dark:text-white hover:underline"
           aria-current="page"
         >
           Lighting
@@ -67,7 +67,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+          className="text-gray-900  dark:text-white hover:underline"
           aria-current="page"
         >
           Interior
@@ -75,7 +75,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+          className="text-gray-900  dark:text-white hover:underline"
           aria-current="page"
         >
           Audio & Electronics
@@ -83,7 +83,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+          className="text-gray-900  dark:text-white hover:underline"
           aria-current="page"
         >
           Specialty
@@ -93,7 +93,7 @@ const Navbar = () => {
         <li key={item._id}>
           <NavLink
             to={`/category/${item.category}`}
-            className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+            className="text-gray-900  dark:text-white hover:underline"
             aria-current="page"
           >
             {item.name}
