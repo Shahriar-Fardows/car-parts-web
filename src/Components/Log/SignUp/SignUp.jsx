@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-// import useAuthProvider from "../../../Hooks/useAuthProvider";
+import useAuthProvider from "../../../Hooks/useAuthProvider";
 
 
 
 const SignUp = () => {
     const [visible, setVisible] = useState(false);
-    // const { createUser } = useAuthProvider();
+
+    const {createUser} = useAuthProvider();
+
    
     const showPassword = () => {
         setVisible(!visible);
@@ -20,18 +22,18 @@ const SignUp = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password);
-        // createUser(email, password)
-        //     .then((userCredential) => {
-        //         // Signed up 
-        //         const user = userCredential.user;
-        //         console.log(user);
-        //         // ...
-        //     })
-        //     .catch((error) => {
-        //         const errorMessage = error.message;
-        //         console.log(errorMessage);
-        //         // ..
-        //     });
+        createUser(email, password)
+            .then((userCredential) => {
+                // Signed up 
+                const user = userCredential.user;
+                console.log(user);
+                // ...
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                // ..
+            });
 
 
     }
