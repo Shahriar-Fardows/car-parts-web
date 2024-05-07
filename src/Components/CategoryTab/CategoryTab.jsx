@@ -9,7 +9,7 @@ const CategoryTab = ({ category }) => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://carid-project-server.vercel.app/api/v1/category-list?category=${category}`
+      `https://carid-project-server.onrender.com/api/v1/category-list?category=${category}`
     )
       .then((res) => res.json())
       .then((data) => {
