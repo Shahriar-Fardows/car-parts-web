@@ -5,7 +5,7 @@ import logo from '../../../public/logo.png'
 const DrawerLinks = () => {
     return (
         <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-            <li className='w-[60vw]  md:w-[25vw] lg:w-[13vw]'>
+            <li className='w-[100%]'>
                 <NavLink to='/' className='text-gray-900 md:text-[12px] dark:text-white hover:underline' >
                     <div className="flex items-center ">
                         <div className="flex-shrink-0">
@@ -22,7 +22,7 @@ const DrawerLinks = () => {
                     </div>
                 </NavLink>
             </li>
-            <li className='w-[60vw]  md:w-[25vw] lg:w-[13vw]'>
+            <li className='w-[100%]'>
                 <NavLink to='/' className='text-gray-900 md:text-[12px] dark:text-white hover:underline' >
                     <div className="flex items-center ">
                         <div className="flex-shrink-0">
@@ -39,7 +39,7 @@ const DrawerLinks = () => {
                     </div>
                 </NavLink>
             </li>
-            <li className='w-[60vw]  md:w-[25vw] lg:w-[13vw]'>
+            <li className='w-[100%]'>
                 <NavLink to='/' className='text-gray-900 md:text-[12px] dark:text-white hover:underline' >
                     <div className="flex items-center ">
                         <div className="flex-shrink-0">
@@ -56,7 +56,7 @@ const DrawerLinks = () => {
                     </div>
                 </NavLink>
             </li>
-            <li className='w-[60vw]  md:w-[25vw] lg:w-[13vw]'>
+            <li className='w-[100%]'>
                 <NavLink to='/' className='text-gray-900 md:text-[12px] dark:text-white hover:underline' >
                     <div className="flex items-center ">
                         <div className="flex-shrink-0">
@@ -73,7 +73,7 @@ const DrawerLinks = () => {
                     </div>
                 </NavLink>
             </li>
-            <li className='w-[60vw]  md:w-[25vw] lg:w-[13vw]'>
+            <li className='w-[100%]'>
                 <NavLink to='/' className='text-gray-900 md:text-[12px] dark:text-white hover:underline' >
                     <div className="flex items-center ">
                         <div className="flex-shrink-0">

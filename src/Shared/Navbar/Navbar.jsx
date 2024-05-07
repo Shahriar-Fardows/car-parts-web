@@ -34,11 +34,12 @@ const Navbar = () => {
 
   const navLink = (
     <>
-      {categoryData?.map((item) => (
+      
+       {categoryData?.map((item) => (
         <li key={item._id}>
           <NavLink
             to={`/category/${item.category}`}
-            className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+            className="text-gray-900  dark:text-white hover:underline"
             aria-current="page"
           >
             {item.name}
@@ -51,7 +52,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="grid grid-cols-2 md:grid-cols-4  lg:grid-cols-5 flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+        <div className="grid grid-cols-2 md:grid-cols-4  lg:grid-cols-5 flex-wrap justify-between items-center mx-auto max-w-screen-2xl p-4">
           {/* menu and logo code  */}
 
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -121,7 +122,7 @@ const Navbar = () => {
       <nav className="bg-gray-50 dark:bg-gray-700 hidden lg:block ">
         <div className="max-w-screen-xl px-4 py-3 mx-auto">
           <div className="flex items-center justify-around">
-            <ul className="  lg:flex lg:flex-row lg:font-medium  lg:gap-[4.5rem] lg:mt-0 lg:space-x-8 lg:rtl:space-x-reverse lg:text-sm  ">
+            <ul className="  lg:flex lg:flex-row lg:font-medium  lg:gap-[1.5rem] lg:mt-0 lg:space-x-8 lg:rtl:space-x-reverse lg:text-sm  ">
               {navLink}
             </ul>
           </div>
