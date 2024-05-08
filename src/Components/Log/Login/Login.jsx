@@ -3,6 +3,7 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import useAuthProvider from "../../../Hooks/useAuthProvider";
+import Swal from "sweetalert2";
 
 
 
@@ -32,9 +33,12 @@ const Login = () => {
                 console.log(user);
                 // ...
             })
-            .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
+            .catch(() => {
+                Swal.fire({
+                    title: 'Invalid email or password!',
+                    icon: 'error',
+                    confirmButtonText: 'Try again'
+                  })
                 // ..
             });
     }

@@ -10,7 +10,6 @@ import Search from "../../Components/Search/Search";
 import Vehicle from "../../Components/VehicleSelect/Vehicle";
 import Loading from "../Loading/Loading";
 import useAuthProvider from "../../Hooks/useAuthProvider";
-// import Loading from "../Loading/Loading";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

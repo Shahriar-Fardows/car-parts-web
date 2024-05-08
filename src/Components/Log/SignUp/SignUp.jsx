@@ -3,6 +3,7 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import useAuthProvider from "../../../Hooks/useAuthProvider";
+import Swal from "sweetalert2";
 
 
 
@@ -32,9 +33,13 @@ const SignUp = () => {
                 console.log(user, 'user');
                 // ...
             })
-            .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
+            .catch(() => {
+                Swal.fire({
+                    title: 'Password has to be between 6 and 32 characters!',
+                    text: '',
+                    icon: 'error',
+                    confirmButtonText: 'Try again'
+                  })
                 // ..
             });
 
@@ -71,7 +76,9 @@ const SignUp = () => {
                         </div>
                         <div className="w-full lg:w-auto px-4"></div>
                     </div>
-                    <button className="inline-block w-full py-4 px-6 mb-6 text-center text-lg leading-6 text-white font-extrabold bg-[#1F2937] hover:bg-[#1F2937] border-3 border-[#1F2937] shadow rounded transition duration-200">Sign up</button>
+                    <div >
+                        <button className="inline-block w-full py-4 px-6 mb-6 text-center text-lg leading-6 text-white font-extrabold bg-[#1F2937] hover:bg-[#1F2937] border-3 border-[#1F2937] shadow rounded transition duration-200">Sign up</button>
+                    </div>
                     <p className="text-center font-extrabold">Don&rsquo;t have an account? <Link to='/login' className="text-red-500 hover:underline"
                     >Sign in</Link></p>
                 </form>
