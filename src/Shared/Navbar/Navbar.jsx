@@ -8,24 +8,36 @@ import { BsCart3 } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import Search from "../../Components/Search/Search";
 import Vehicle from "../../Components/VehicleSelect/Vehicle";
-// import Loading from "../Loading/Loading";
+import Loading from "../Loading/Loading";
+import useAuthProvider from "../../Hooks/useAuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  // const [loading , setLoading] = useState(false)
-  // const [categoryData, setCategory] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const [categoryData, setCategory] = useState([]);
+  const { user , LogOut} = useAuthProvider();
 
-  // useEffect(() => {
-  //   setLoading(true)
-  //   fetch(`https://carid-project-server.vercel.app/api/v1/category`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setCategory(data)
-  //       setLoading(false)
-  //     });
-  // }, []);
+  const logOut = () => {
+    Swal.fire({
+      text: 'Log Out successfully!',
+      icon: 'success',
+      confirmButtonText: 'Cool'
+    })
+    LogOut();
+  }
 
-  // if (loading) return <Loading />;
+  useEffect(() => {
+    setLoading(true)
+    fetch(`https://carid-project-server.onrender.com/api/v1/category`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCategory(data)
+        setLoading(false)
+      });
+  }, []);
+
+  if (loading) return <Loading />;
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -33,80 +45,25 @@ const Navbar = () => {
 
   const navLink = (
     <>
-      <li>
-        <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
-          aria-current="page"
-        >
-          Parts
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
-          aria-current="page"
-        >
-          Wheels & Tires
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
-          aria-current="page"
-        >
-          Exterior
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
-          aria-current="page"
-        >
-          Lighting
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
-          aria-current="page"
-        >
-          Interior
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
-          aria-current="page"
-        >
-          Audio & Electronics
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
-          aria-current="page"
-        >
-          Specialty
-        </NavLink>
-      </li>
-      {/* {categoryData?.map((item) => (
+
+      {categoryData?.map((item) => (
         <li key={item._id}>
           <NavLink
             to={`/category/${item.category}`}
-            className="text-gray-900 md:text-[16px] dark:text-white hover:underline"
+            className="text-gray-900  dark:text-white hover:underline"
             aria-current="page"
           >
             {item.name}
           </NavLink>
         </li>
-      ))} */}
+      ))}
     </>
   );
 
   return (
     <div>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="grid grid-cols-2 md:grid-cols-4  lg:grid-cols-5 flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+        <div className="grid grid-cols-2 md:grid-cols-4  lg:grid-cols-5 flex-wrap justify-between items-center mx-auto max-w-screen-2xl p-4">
           {/* menu and logo code  */}
 
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -164,9 +121,22 @@ const Navbar = () => {
                 <button>close</button>
               </form>
             </dialog>
-            <NavLink to="/login">
-              <VscAccount className="text-[1.5rem]" />
-            </NavLink>
+            {
+              user?.email ? <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  </div>
+                </div>
+                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                  <li><NavLink to='/profile'>Profile</NavLink> </li>
+                  <li><p onClick={logOut}>Logout</p></li>
+                </ul>
+              </div> : <NavLink to="/login">
+                <VscAccount className="text-[1.5rem]" />
+              </NavLink>
+            }
+
             <NavLink to="/cart">
               <BsCart3 className="text-[1.5rem]" />
             </NavLink>
@@ -176,7 +146,7 @@ const Navbar = () => {
       <nav className="bg-gray-50 dark:bg-gray-700 hidden lg:block ">
         <div className="max-w-screen-xl px-4 py-3 mx-auto">
           <div className="flex items-center justify-around">
-            <ul className="  lg:flex lg:flex-row lg:font-medium  lg:gap-[4.5rem] lg:mt-0 lg:space-x-8 lg:rtl:space-x-reverse lg:text-sm  ">
+            <ul className="  lg:flex lg:flex-row lg:font-medium  lg:gap-[1.5rem] lg:mt-0 lg:space-x-8 lg:rtl:space-x-reverse lg:text-sm  ">
               {navLink}
             </ul>
           </div>

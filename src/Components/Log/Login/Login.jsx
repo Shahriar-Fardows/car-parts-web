@@ -1,16 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-// import useAuthProvider from "../../../Hooks/useAuthProvider";
+import useAuthProvider from "../../../Hooks/useAuthProvider";
+import Swal from "sweetalert2";
 
 
 
 const Login = () => {
 
     const [visible, setVisible] = useState(false);
-    // const {loginUser} = useAuthProvider();
- 
+    const { loginUser, user } = useAuthProvider();
+
+
+    if (user?.email) {
+        return <Navigate to="/profile" />;
+    }
+
     const showPassword = () => {
         setVisible(!visible);
     }
@@ -20,19 +26,23 @@ const Login = () => {
         console.log(e);
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email , password); 
-        // loginUser(email, password)
-        // .then((userCredential) => {
-        //     // Signed in 
-        //     const user = userCredential.user;
-        //     console.log(user);
-        //     // ...
-        // })
-        // .catch((error) => {
-        //     const errorMessage = error.message;
-        //     console.log(errorMessage);
-        //     // ..
-        // });
+        loginUser(email, password)
+            .then(() => {
+                Swal.fire({
+                    text: 'Sign up successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+                // ...
+            })
+            .catch(() => {
+                Swal.fire({
+                    title: 'Invalid email or password!',
+                    icon: 'error',
+                    confirmButtonText: 'Try again'
+                  })
+                // ..
+            });
     }
 
     return (
@@ -49,7 +59,7 @@ const Login = () => {
                     <div className="mb-6">
                         <label className="block mb-2 font-extrabold" htmlFor="">Password</label>
                         <div className=" flex   leading-6 border-2 border-[#1F2937] rounded ">
-                            <input name='password' className="text-lg p-4 w-full border-0	 font-extrabold placeholder-[#1F2937]" type={visible ? 'text' : 'password'}  id="" placeholder="**********" />
+                            <input name='password' className="text-lg p-4 w-full border-0	 font-extrabold placeholder-[#1F2937]" type={visible ? 'text' : 'password'} id="" placeholder="**********" />
                             <div className="flex items-center px-4">
                                 {
                                     visible ? <IoEye style={{ cursor: 'pointer' }} className="text-xl" onClick={showPassword} /> : <IoMdEyeOff style={{ cursor: 'pointer' }} className="text-xl" onClick={showPassword} />
