@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, } from "react-router-dom";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
@@ -9,9 +9,12 @@ import useAuthProvider from "../../../Hooks/useAuthProvider";
 const SignUp = () => {
     const [visible, setVisible] = useState(false);
 
-    const {createUser} = useAuthProvider();
+    const { user, createUser } = useAuthProvider();
 
-   
+    if (user?.email) {
+        return <Navigate to="/profile" />;
+    }
+
     const showPassword = () => {
         setVisible(!visible);
     }
@@ -26,7 +29,7 @@ const SignUp = () => {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                console.log(user);
+                console.log(user, 'user');
                 // ...
             })
             .catch((error) => {

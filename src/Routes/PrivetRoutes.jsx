@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Navigate } from "react-router-dom";
 import useAuthProvider from "../Hooks/useAuthProvider";
 
@@ -13,7 +14,7 @@ const PrivateRoute = ({children}) => {
         return children;
     }
 
-    return <Navigate to="/login" replace></Navigate>;
+    return <Navigate to="/login"  replace></Navigate>;
 };
 
 export default PrivateRoute;
