@@ -9,12 +9,23 @@ import { BsSearch } from "react-icons/bs";
 import Search from "../../Components/Search/Search";
 import Vehicle from "../../Components/VehicleSelect/Vehicle";
 import Loading from "../Loading/Loading";
-// import Loading from "../Loading/Loading";
+import useAuthProvider from "../../Hooks/useAuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [categoryData, setCategory] = useState([]);
+  const { user , LogOut} = useAuthProvider();
+
+  const logOut = () => {
+    Swal.fire({
+      text: 'Log Out successfully!',
+      icon: 'success',
+      confirmButtonText: 'Cool'
+    })
+    LogOut();
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -34,8 +45,8 @@ const Navbar = () => {
 
   const navLink = (
     <>
-      
-       {categoryData?.map((item) => (
+
+      {categoryData?.map((item) => (
         <li key={item._id}>
           <NavLink
             to={`/category/${item.category}`}
@@ -110,9 +121,22 @@ const Navbar = () => {
                 <button>close</button>
               </form>
             </dialog>
-            <NavLink to="/login">
-              <VscAccount className="text-[1.5rem]" />
-            </NavLink>
+            {
+              user?.email ? <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  </div>
+                </div>
+                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                  <li><NavLink to='/profile'>Profile</NavLink> </li>
+                  <li><p onClick={logOut}>Logout</p></li>
+                </ul>
+              </div> : <NavLink to="/login">
+                <VscAccount className="text-[1.5rem]" />
+              </NavLink>
+            }
+
             <NavLink to="/cart">
               <BsCart3 className="text-[1.5rem]" />
             </NavLink>
