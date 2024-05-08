@@ -10,6 +10,7 @@ import Search from "../../Components/Search/Search";
 import Vehicle from "../../Components/VehicleSelect/Vehicle";
 import Loading from "../Loading/Loading";
 import useAuthProvider from "../../Hooks/useAuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -18,6 +19,11 @@ const Navbar = () => {
   const { user , LogOut} = useAuthProvider();
 
   const logOut = () => {
+    Swal.fire({
+      text: 'Log Out successfully!',
+      icon: 'success',
+      confirmButtonText: 'Cool'
+    })
     LogOut();
   }
 

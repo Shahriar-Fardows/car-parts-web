@@ -27,11 +27,12 @@ const SignUp = () => {
         const password = e.target.password.value;
         console.log(email, password);
         createUser(email, password)
-            .then((userCredential) => {
-                // Signed up 
-                const user = userCredential.user;
-                console.log(user, 'user');
-                // ...
+            .then(() => {
+                Swal.fire({
+                    text: 'Sign up successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
             })
             .catch(() => {
                 Swal.fire({

@@ -6,6 +6,7 @@ import Login from "../Components/Log/Login/Login";
 import SignUp from "../Components/Log/SignUp/SignUp";
 import Category from "../Shared/Navbar/NavCategory/Category";
 import Profile from "../Layout/Profile/Profile";
+import PrivateRoute from "./PrivetRoutes";
 
 
 const Routes = createBrowserRouter([
@@ -32,7 +33,7 @@ const Routes = createBrowserRouter([
             },
             {
               path: "/profile",
-              element: <Profile/> ,
+              element: <PrivateRoute><Profile/></PrivateRoute> ,
             },
             
           ],
