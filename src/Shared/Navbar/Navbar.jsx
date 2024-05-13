@@ -8,7 +8,6 @@ import { BsCart3 } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import Search from "../../Components/Search/Search";
 import Vehicle from "../../Components/VehicleSelect/Vehicle";
-import Loading from "../Loading/Loading";
 import useAuthProvider from "../../Hooks/useAuthProvider";
 import Swal from "sweetalert2";
 
@@ -36,8 +35,6 @@ const Navbar = () => {
         setLoading(false)
       });
   }, []);
-
-  if (loading) return <Loading />;
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
