@@ -7,6 +7,7 @@ import SignUp from "../Components/Log/SignUp/SignUp";
 import Category from "../Shared/Navbar/NavCategory/Category";
 import Profile from "../Layout/Profile/Profile";
 import PrivateRoute from "./PrivetRoutes";
+import SubCategory from "../Components/SubCategory/SubCategory";
 
 const Routes = createBrowserRouter([
       {
@@ -21,6 +22,10 @@ const Routes = createBrowserRouter([
           {
             path: "/category/:category",
             element: <Category />,
+          },
+          {
+            path: "/sub/:category",
+            element: <SubCategory/>
           },
           {
             path: "/login",

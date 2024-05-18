@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../../Loading/Loading";
 import { useEffect, useState } from "react";
 
@@ -24,13 +24,13 @@ const Category = () => {
   return (
     <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 mt-12 max-w-screen-xl mx-auto px-4">
       {categoryData?.map((item) => (
-        <div
+        <Link to={`/sub/${item.category}`}
           className="cursor-pointer hover:border text-center hover:underline rounded-lg"
           key={item._id}
         >
           <img className="inline" src={item.image} alt="category.png" />
           <p className="text-center mt-4">{item.name}</p>
-        </div>
+        </Link>
       ))}
     </div>
   );
