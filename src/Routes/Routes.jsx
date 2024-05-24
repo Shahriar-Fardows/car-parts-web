@@ -8,40 +8,48 @@ import Category from "../Shared/Navbar/NavCategory/Category";
 import Profile from "../Layout/Profile/Profile";
 import PrivateRoute from "./PrivetRoutes";
 import SubCategory from "../Components/SubCategory/SubCategory";
+import SubCategoryDetails from "../Components/SubCategoryDetails/SubCategoryDetails";
 
 const Routes = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <Error />,
+    children: [
       {
         path: "/",
-        element: <Root />,
-        errorElement: <Error />,
-        children: [
-          {
-            path: "/",
-            element: <Home />,
-          },
-          {
-            path: "/category/:category",
-            element: <Category />,
-          },
-          {
-            path: "/sub/:category",
-            element: <SubCategory/>
-          },
-          {
-            path: "/login",
-            element: <Login />,
-          },
-          {
-            path: "/signUp",
-            element: <SignUp />,
-          },
-          {
-            path: "/profile",
-            element: <PrivateRoute><Profile /></PrivateRoute>,
-          },
-            
-        ],
+        element: <Home />,
       },
+      {
+        path: "/category/:category",
+        element: <Category />,
+      },
+      {
+        path: "/sub/:category",
+        element: <SubCategory />,
+      },
+      {
+        path: "/details/:id",
+        element: <SubCategoryDetails />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp />,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
 ]);
 
 export default Routes;

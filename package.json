@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.0",
     "react-query": "^3.39.3",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.23.0",
     "react-tabs": "^6.0.2",
     "sort-by": "^1.2.0",

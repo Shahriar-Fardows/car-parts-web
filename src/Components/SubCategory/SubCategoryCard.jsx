@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 const SubCategoryCard = ({ categories }) => {
-  const { image, name } = categories || {};
+  const { image, name, _id } = categories || {};
   return (
-    <div className="border cursor-pointer hover:underline">
+    <Link to={`/details/${_id}`} className="border cursor-pointer hover:underline">
       <img src={image} alt="category.images" />
       <p className="text-xl font-semibold text-center p-2 ">{name}</p>
       <div className="overflow-hidden rounded bg-white text-slate-500">
@@ -96,7 +98,7 @@ const SubCategoryCard = ({ categories }) => {
       <div className="text-center mb-4 hover:underline ">
         <button className="px-6 py-2 border text-xl font-semibold">View Details</button>
       </div>
-    </div>
+    </Link>
   );
 };
 
