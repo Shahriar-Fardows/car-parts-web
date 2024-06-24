@@ -10,7 +10,7 @@ const CategoryTab = ({ category }) => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://carid-project-server.onrender.com/api/v1/category-list?category=${category}`
+      `https://carid-project-server.vercel.app/api/v1/category-list?category=${category}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -26,7 +26,8 @@ const CategoryTab = ({ category }) => {
   return (
     <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 mt-12 px-3">
       {categoryData?.map((item) => (
-        <Link to={`/sub/${item.category}`}
+        <Link
+          to={`/sub/${item.category}`}
           className="cursor-pointer hover:border text-center hover:underline rounded-lg"
           key={item._id}
         >

@@ -7,7 +7,7 @@ const FeatureBrands = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://carid-project-server.onrender.com/api/v1/image`)
+    fetch(`https://carid-project-server.vercel.app/api/v1/image`)
       .then((res) => res.json())
       .then((data) => {
         setImage(data);
@@ -16,8 +16,6 @@ const FeatureBrands = () => {
   }, []);
 
   // console.log(categoryData);
-
-  if (loading) return <Loading />;
 
   return (
     <div className="max-w-screen-xl mx-auto mt-12 px-3">

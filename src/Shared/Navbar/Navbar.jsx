@@ -13,26 +13,26 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [categoryData, setCategory] = useState([]);
-  const { user , LogOut} = useAuthProvider();
+  const { user, LogOut } = useAuthProvider();
 
   const logOut = () => {
     Swal.fire({
-      text: 'Log Out successfully!',
-      icon: 'success',
-      confirmButtonText: 'Cool'
-    })
+      text: "Log Out successfully!",
+      icon: "success",
+      confirmButtonText: "Cool",
+    });
     LogOut();
-  }
+  };
 
   useEffect(() => {
-    setLoading(true)
-    fetch(`https://carid-project-server.onrender.com/api/v1/category`)
+    setLoading(true);
+    fetch(`https://carid-project-server.vercel.app/api/v1/category`)
       .then((res) => res.json())
       .then((data) => {
-        setCategory(data)
-        setLoading(false)
+        setCategory(data);
+        setLoading(false);
       });
   }, []);
 
@@ -42,7 +42,6 @@ const Navbar = () => {
 
   const navLink = (
     <>
-
       {categoryData?.map((item) => (
         <li key={item._id}>
           <NavLink
@@ -118,21 +117,37 @@ const Navbar = () => {
                 <button>close</button>
               </form>
             </dialog>
-            {
-              user?.email ? <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+            {user?.email ? (
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
                   <div className="w-10 rounded-full">
-                    <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    />
                   </div>
                 </div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                  <li><NavLink to='/profile'>Profile</NavLink> </li>
-                  <li><p onClick={logOut}>Logout</p></li>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <NavLink to="/profile">Profile</NavLink>{" "}
+                  </li>
+                  <li>
+                    <p onClick={logOut}>Logout</p>
+                  </li>
                 </ul>
-              </div> : <NavLink to="/login">
+              </div>
+            ) : (
+              <NavLink to="/login">
                 <VscAccount className="text-[1.5rem]" />
               </NavLink>
-            }
+            )}
 
             <NavLink to="/cart">
               <BsCart3 className="text-[1.5rem]" />

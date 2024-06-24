@@ -5,17 +5,17 @@ import { useEffect, useState } from "react";
 const Category = () => {
   const { category } = useParams();
 
-  const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [categoryData, setCategory] = useState([]);
 
   useEffect(() => {
-    setLoading(true)
-    const url = `https://carid-project-server.onrender.com/api/v1/category-list?category=${category}`
+    setLoading(true);
+    const url = `https://carid-project-server.vercel.app/api/v1/category-list?category=${category}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setCategory(data)
-        setLoading(false)
+        setCategory(data);
+        setLoading(false);
       });
   }, [category]);
 
@@ -24,7 +24,8 @@ const Category = () => {
   return (
     <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 mt-12 max-w-screen-xl mx-auto px-4">
       {categoryData?.map((item) => (
-        <Link to={`/sub/${item.category}`}
+        <Link
+          to={`/sub/${item.category}`}
           className="cursor-pointer hover:border text-center hover:underline rounded-lg"
           key={item._id}
         >

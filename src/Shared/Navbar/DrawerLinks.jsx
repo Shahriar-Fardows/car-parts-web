@@ -3,14 +3,13 @@ import { NavLink } from "react-router-dom";
 import { SlArrowRight } from "react-icons/sl";
 import logo from "../../../public/logo.png";
 import { useEffect, useState } from "react";
-import Loading from "../Loading/Loading";
 const DrawerLinks = () => {
   const [loading, setLoading] = useState(false);
   const [categoryData, setCategory] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://carid-project-server.onrender.com/api/v1/category`)
+    fetch(`https://carid-project-server.vercel.app/api/v1/category`)
       .then((res) => res.json())
       .then((data) => {
         setCategory(data);
@@ -18,10 +17,12 @@ const DrawerLinks = () => {
       });
   }, []);
 
-  if (loading) return <Loading />;
 
   return (
-    <ul role="list" className="divide-y z-50 overflow-x-auto divide-gray-200 dark:divide-gray-700">
+    <ul
+      role="list"
+      className="divide-y z-50 overflow-x-auto divide-gray-200 dark:divide-gray-700"
+    >
       {categoryData?.map((item) => {
         return (
           <li key={item._id} className="w-[100%]">

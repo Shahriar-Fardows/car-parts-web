@@ -11,7 +11,7 @@ const SubCategoryDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/sub-categories/${id}`)
+    fetch(`https://carid-project-server.vercel.app/api/v1/sub-categories/${id}`)
       .then((res) => res.json())
       .then((data) => setCategory(data));
   }, [id]);
