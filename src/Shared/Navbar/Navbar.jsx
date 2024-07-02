@@ -1,4 +1,4 @@
-import logo from "../../../public/logo.png";
+import logo from "../../../public/logo_image.jpg";
 import { useEffect, useState } from "react";
 import "./NavDrawer.css";
 import NavDrawer from "./NavDrawer";
@@ -85,7 +85,7 @@ const Navbar = () => {
               <NavDrawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
             </div>
             <Link to="/">
-              <img src={logo} className="h-8" alt="Logo" />
+              <img src={logo} className="w-28 h-12 rounded" alt="Logo" />
             </Link>
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
           </div>

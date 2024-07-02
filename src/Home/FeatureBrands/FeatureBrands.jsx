@@ -6,12 +6,10 @@ const FeatureBrands = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     fetch(`https://carid-project-server.vercel.app/api/v1/image`)
       .then((res) => res.json())
       .then((data) => {
         setImage(data);
-        setLoading(false);
       });
   }, []);
 
