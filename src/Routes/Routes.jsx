@@ -9,6 +9,10 @@ import Profile from "../Layout/Profile/Profile";
 import PrivateRoute from "./PrivetRoutes";
 import SubCategory from "../Components/SubCategory/SubCategory";
 import SubCategoryDetails from "../Components/SubCategoryDetails/SubCategoryDetails";
+import AdminPanel from "../AdminPanel/AdminPanel";
+import Admin from "../AdminPanel/Admin";
+import AdminDashboard from "../AdminPanel/AdminDashboard";
+import Cart from "../Components/Cart/Cart";
 
 const Routes = createBrowserRouter([
   {
@@ -41,6 +45,14 @@ const Routes = createBrowserRouter([
         element: <SignUp />,
       },
       {
+        path: "/admin",
+        element: <AdminPanel/>
+      },
+      {
+        path: "/cart",
+        element: <Cart/>
+      },
+      {
         path: "/profile",
         element: (
           <PrivateRoute>
@@ -50,6 +62,21 @@ const Routes = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/admin",
+    element: <Admin />,
+    children: [
+      {
+        path: "/admin/admin-dashboard",
+        element: <AdminDashboard/>
+      },
+      {
+        path: "/admin/admin-home",
+        element: <div className="md:max-w-sm lg:max-w-screen-md mx-auto mt-36 px-6">hi this is admin </div>
+      },
+      
+    ]
+  }
 ]);
 
 export default Routes;

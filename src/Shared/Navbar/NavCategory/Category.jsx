@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const Category = () => {
   const { category } = useParams();
-
+  
   const [loading, setLoading] = useState(false);
   const [categoryData, setCategory] = useState([]);
 
@@ -18,6 +18,7 @@ const Category = () => {
         setLoading(false);
       });
   }, [category]);
+
 
   if (loading) return <Loading />;
 
