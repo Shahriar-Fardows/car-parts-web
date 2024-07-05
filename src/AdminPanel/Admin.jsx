@@ -1,6 +1,10 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../public/logo_image.jpg";
 import { useState } from "react";
+import { BiCategory } from "react-icons/bi";
+import { FaClipboardList } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
+import { AiFillProduct } from "react-icons/ai";
 
 const Admin = () => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
@@ -13,25 +17,63 @@ const Admin = () => {
           className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-500 focus:bg-sky-50 aria-[current=page]:bg-sky-50 aria-[current=page]:text-sky-500 "
         >
           <div className="flex w-6 items-center self-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="h-6 w-6"
-              aria-label="Dashboard icon"
-              role="graphics-symbol"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
-              />
-            </svg>
+          <MdDashboard />
           </div>
           <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
             Dashboard
+          </div>
+        </NavLink>
+      </li>
+      <li className="px-3">
+        <NavLink
+          to="/admin/user-list"
+          className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-500 focus:bg-sky-50 aria-[current=page]:bg-sky-50 aria-[current=page]:text-sky-500 "
+        >
+          <div className="flex w-6 items-center self-center">
+          <FaClipboardList />
+          </div>
+          <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+            User List
+          </div>
+        </NavLink>
+      </li>
+      <li className="px-3">
+        <NavLink
+          to="/admin/category"
+          className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-500 focus:bg-sky-50 aria-[current=page]:bg-sky-50 aria-[current=page]:text-sky-500 "
+        >
+          <div className="flex w-6 items-center self-center">
+          <BiCategory />
+          </div>
+          <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+            Category
+          </div>
+        </NavLink>
+      </li>
+      <li className="px-3">
+        <NavLink
+          to="/admin/sub-category"
+          className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-500 focus:bg-sky-50 aria-[current=page]:bg-sky-50 aria-[current=page]:text-sky-500 "
+        >
+          <div className="flex w-6 items-center self-center">
+          <BiCategory />
+          </div>
+          <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+           Sub Category
+          </div>
+        </NavLink>
+      </li>
+      <li className="px-3">
+        <NavLink
+          to="/admin/product"
+          className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-500 focus:bg-sky-50 aria-[current=page]:bg-sky-50 aria-[current=page]:text-sky-500 "
+        >
+          <div className="flex w-6 items-center self-center">
+          <AiFillProduct />
+
+          </div>
+          <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+          Product
           </div>
         </NavLink>
       </li>
@@ -127,8 +169,8 @@ const Admin = () => {
   );
   return (
     <div>
-      <div>
-        <header className="fixed px-5 inset-x-0 top-4 z-30 mx-auto w-full max-w-screen-md  md:top-6 ">
+      <div className="bg-white mt-4">
+        <header className=" bg-white px-5 inset-x-0 top-4 z-30 mx-auto w-full max-w-screen-md  md:top-6 ">
           <div className="px-4">
             <div className="flex items-center justify-between">
               <div className="flex shrink-0">
@@ -197,7 +239,7 @@ const Admin = () => {
           <aside
             id="nav-menu-5"
             aria-label="Side navigation"
-            className={`fixed top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
+            className={`fixed top-0 bottom-0 left-0 z-40 flex w-52 flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
               isSideNavOpen ? "translate-x-0" : " -translate-x-full"
             }`}
           >

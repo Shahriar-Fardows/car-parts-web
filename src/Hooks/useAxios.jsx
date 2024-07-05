@@ -1,7 +1,7 @@
-import { SiAxios } from "react-icons/si";
+import axios from "axios";
 
-const instance = SiAxios.create({
-    baseURL : 'https://pat-match-adoption-server.vercel.app/api/v1'
+const instance =axios.create({
+    baseURL : 'http://localhost:5000/api/v1'
 })
 const useAxios = () => {
     return instance

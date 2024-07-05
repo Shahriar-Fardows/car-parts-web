@@ -1,24 +1,28 @@
 import { Link, useParams } from "react-router-dom";
 import Loading from "../../Loading/Loading";
 import { useEffect, useState } from "react";
+import useAxios from "../../../Hooks/useAxios";
 
 const Category = () => {
   const { category } = useParams();
-  
+  const axios = useAxios();
   const [loading, setLoading] = useState(false);
   const [categoryData, setCategory] = useState([]);
 
+
   useEffect(() => {
     setLoading(true);
-    const url = `https://carid-project-server.vercel.app/api/v1/category-list?category=${category}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setCategory(data);
+    axios
+      .get(`category-list?category=${category}`)
+      .then((res) => {
+        setCategory(res?.data);
         setLoading(false);
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  }, [category]);
-
+  }, [axios, category]);
 
   if (loading) return <Loading />;
 

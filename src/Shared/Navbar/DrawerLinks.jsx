@@ -3,20 +3,24 @@ import { NavLink } from "react-router-dom";
 import { SlArrowRight } from "react-icons/sl";
 import logo from "../../../public/logo.png";
 import { useEffect, useState } from "react";
+import useAxios from "../../Hooks/useAxios";
 const DrawerLinks = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [categoryData, setCategory] = useState([]);
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(`https://carid-project-server.vercel.app/api/v1/category`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCategory(data);
-        setLoading(false);
-      });
-  }, []);
+  const axios = useAxios();
 
+  useEffect(() => {
+    axios
+      .get("/category")
+      .then((res) => {
+        setCategory(res?.data);
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [axios]);
 
   return (
     <ul

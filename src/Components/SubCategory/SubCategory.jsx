@@ -3,16 +3,24 @@ import { useParams } from "react-router-dom";
 import SubCategoryBanner from "../../Shared/SubCategoryBanner/SubCategoryBanner";
 import SelectVehicle from "../../Home/SelectVehicle/SelectVehicle";
 import SubCategoryCard from "./SubCategoryCard";
+import useAxios from "../../Hooks/useAxios";
 
 const SubCategory = () => {
   const [subCat, setSubCat] = useState([]);
   const { category } = useParams();
+  const axios = useAxios();
 
   useEffect(() => {
-    fetch(`https://carid-project-server.vercel.app/api/v1/sub-category?subCategory=${category}`)
-      .then((res) => res.json())
-      .then((data) => setSubCat(data));
-  }, [category]);
+    axios
+      .get(`/sub-category?subCategory=${category}`)
+      .then((res) => {
+        setSubCat(res?.data);  
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [axios, category]);
 
   return (
     <section>

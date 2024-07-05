@@ -1,17 +1,23 @@
-import Loading from "../../Shared/Loading/Loading";
+import useAxios from "../../Hooks/useAxios";
+// import Loading from "../../Shared/Loading/Loading";
 import { useEffect, useState } from "react";
 
 const FeatureBrands = () => {
   const [imageData, setImage] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const axios = useAxios();
 
   useEffect(() => {
-    fetch(`https://carid-project-server.vercel.app/api/v1/image`)
-      .then((res) => res.json())
-      .then((data) => {
-        setImage(data);
+    axios
+      .get("/image")
+      .then((res) => {
+        setImage(res?.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  }, []);
+  }, [axios]);
 
   // console.log(categoryData);
 

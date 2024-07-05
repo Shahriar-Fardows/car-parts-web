@@ -5,16 +5,24 @@ import { GiBowTieRibbon } from "react-icons/gi";
 import { Carousel } from "react-responsive-carousel";
 import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import useAxios from "../../Hooks/useAxios";
 
 const SubCategoryDetails = () => {
   const [category, setCategory] = useState({});
   const { id } = useParams();
+  const axios = useAxios();
 
   useEffect(() => {
-    fetch(`https://carid-project-server.vercel.app/api/v1/sub-categories/${id}`)
-      .then((res) => res.json())
-      .then((data) => setCategory(data));
-  }, [id]);
+    axios
+      .get(`sub-categories/${id}`)
+      .then((res) => {
+        setCategory(res?.data);
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [axios, id]);
 
   console.log(category);
   const { name, price, features, description, warranty, warning } =

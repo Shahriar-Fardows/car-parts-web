@@ -4,10 +4,11 @@ import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import useAuthProvider from "../../../Hooks/useAuthProvider";
 import Swal from "sweetalert2";
+import useAxios from "../../../Hooks/useAxios";
 
 const SignUp = () => {
   const [visible, setVisible] = useState(false);
-
+    const axios = useAxios();
   const { user, createUser } = useAuthProvider();
 
   if (user?.email) {
@@ -21,6 +22,7 @@ const SignUp = () => {
   const signUpData = (e) => {
     e.preventDefault();
     // console.log(e);
+    const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     createUser(email, password)
@@ -29,16 +31,10 @@ const SignUp = () => {
           email: email,
           password: password,
           role: "user",
+          name: name
         };
-        // post email or password save  on data base
-        fetch("http://localhost:5000/api/v1/save-user", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        })
-          .then((res) => res.json())
+          // post email or password save  on data base
+          axios.post("save-user", user)
           .then((data) => {
             if (data.acknowledged) {
               Swal.fire({
@@ -48,6 +44,23 @@ const SignUp = () => {
               });
             }
           });
+        // fetch("http://localhost:5000/api/v1/save-user", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(user),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     if (data.acknowledged) {
+        //       Swal.fire({
+        //         text: "Sign up successfully!",
+        //         icon: "success",
+        //         confirmButtonText: "Cool",
+        //       });
+        //     }
+        //   });
       })
       .catch(() => {
         Swal.fire({
@@ -67,6 +80,17 @@ const SignUp = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold">Sign up</h2>
         </div>
         <form action="" onSubmit={signUpData}>
+          <div className="mb-6">
+            <label className="block mb-2 font-extrabold" htmlFor="">
+              Name
+            </label>
+            <input
+              className="inline-block w-full p-4 leading-6 text-lg font-extrabold placeholder-[#1F2937] bg-white shadow border-2 border-[#1F2937] rounded"
+              type="text"
+              name="name"
+              placeholder="name"
+            />
+          </div>
           <div className="mb-6">
             <label className="block mb-2 font-extrabold" htmlFor="">
               Email

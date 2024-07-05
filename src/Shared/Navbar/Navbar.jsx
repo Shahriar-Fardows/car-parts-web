@@ -10,12 +10,14 @@ import Search from "../../Components/Search/Search";
 import Vehicle from "../../Components/VehicleSelect/Vehicle";
 import useAuthProvider from "../../Hooks/useAuthProvider";
 import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [categoryData, setCategory] = useState([]);
   const { user, LogOut } = useAuthProvider();
+  const axios = useAxios();
 
   const logOut = () => {
     Swal.fire({
@@ -27,14 +29,16 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`https://carid-project-server.vercel.app/api/v1/category`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCategory(data);
-        setLoading(false);
+    axios
+      .get("/category")
+      .then((res) => {
+        setCategory(res?.data);
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  }, []);
+  }, [axios]);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from "../Firebase/Firebase";
 
 export const Context = createContext();
@@ -32,13 +32,19 @@ const AuthContext = ({ children }) => {
     }
     const LogOut = () => {
         return signOut(auth);
+    };
+
+    const deleted = () => {
+        return deleteUser(auth.currentUser)
     }
+
     const info = {
         user,
         loading,
         createUser,
         loginUser,
-        LogOut
+        LogOut,
+        deleted
     }
 
     return (

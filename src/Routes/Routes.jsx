@@ -11,8 +11,12 @@ import SubCategory from "../Components/SubCategory/SubCategory";
 import SubCategoryDetails from "../Components/SubCategoryDetails/SubCategoryDetails";
 import AdminPanel from "../AdminPanel/AdminPanel";
 import Admin from "../AdminPanel/Admin";
-import AdminDashboard from "../AdminPanel/AdminDashboard";
 import Cart from "../Components/Cart/Cart";
+import AdminDashboard from "../AdminPanel/AdminDashboard";
+import UserList from "../AdminPanel/UserList";
+import AdminCategory from "../AdminPanel/AdminCategory";
+import AdminSubCategory from "../AdminPanel/AdminSubCategory";
+import Product from "../AdminPanel/Product";
 
 const Routes = createBrowserRouter([
   {
@@ -71,8 +75,20 @@ const Routes = createBrowserRouter([
         element: <AdminDashboard/>
       },
       {
-        path: "/admin/admin-home",
-        element: <div className="md:max-w-sm lg:max-w-screen-md mx-auto mt-36 px-6">hi this is admin </div>
+        path: "/admin/user-list",
+        element: <UserList/>
+      },
+      {
+        path: "/admin/category",
+        element: <AdminCategory/>
+      },
+      {
+        path: "/admin/sub-category",
+        element: <AdminSubCategory/>
+      },
+      {
+        path: "/admin/product",
+        element: <Product/>
       },
       
     ]
