@@ -17,6 +17,9 @@ import UserList from "../AdminPanel/UserList";
 import AdminCategory from "../AdminPanel/AdminCategory";
 import AdminSubCategory from "../AdminPanel/AdminSubCategory";
 import Product from "../AdminPanel/Product";
+import CategoryAdded from "../AdminPanel/CategoryAdded";
+import AddedProduct from "../AdminPanel/AddedProduct";
+import ProductEdit from "../AdminPanel/ProductEdit";
 
 const Routes = createBrowserRouter([
   {
@@ -83,12 +86,24 @@ const Routes = createBrowserRouter([
         element: <AdminCategory/>
       },
       {
+        path: "/admin/category-added",
+        element: <CategoryAdded/>
+      },
+      {
         path: "/admin/sub-category",
         element: <AdminSubCategory/>
       },
       {
         path: "/admin/product",
         element: <Product/>
+      },
+      {
+        path: "/admin/product-edit/:id",
+        element: <ProductEdit/>
+      },
+      {
+        path: "/admin/added-product",
+        element: <AddedProduct/>
       },
       
     ]

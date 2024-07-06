@@ -1,29 +1,66 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
 import { useEffect, useState } from "react";
+import { MdOutlineDeleteOutline } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const AdminCategory = () => {
   const axios = useAxios();
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/category")
-      .then((res) => {
-        setUser(res?.data);
-        // console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [axios]);
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    const response = await axios.get("/category");
+    setUser(response.data);
+  };
+
+  // handleDelete
+  const handleDelete = async (id) => { 
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axios.delete(`/category-deleted/${id}`);
+        if (res.data.deletedCount > 0) {
+          fetchItems();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
+  };
+
   return (
     <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6">
       <section>
-        <h1 className="text-3xl font-bold ">All Category</h1>
+        <div className="flex justify-between px-8">
+          <h1 className="text-3xl font-bold ">All Category</h1>
+          <div>
+            <NavLink
+              to={`/admin/category-added`}
+              className="flex gap-2 justify-center items-center border bg-[#3761bf] hover:bg-[#10327c] rounded-lg p-2 text-white "
+            >
+              <FaEdit className="text-xl " />
+              Add
+            </NavLink>
+          </div>
+        </div>
         {/* table for shoe data */}
-        <div>
+        <div className="mt-8">
           <div className="p-6 overflow-scroll px-0">
             <table className="mt-4 w-full min-w-max table-auto text-left">
               <thead>
@@ -41,6 +78,11 @@ const AdminCategory = () => {
                   <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
                     <p className="text-sm text-blue-gray-900  font-semibold leading-none opacity-70">
                       Name
+                    </p>
+                  </th>
+                  <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+                    <p className="text-sm text-blue-gray-900  font-semibold leading-none opacity-70">
+                      Category
                     </p>
                   </th>
                   <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
@@ -74,15 +116,14 @@ const AdminCategory = () => {
                       <td className="p-4 border-b border-blue-gray-50">
                         <p>{table.name}</p>
                       </td>
+                      <td className="p-4 border-b border-blue-gray-50">
+                        <p>{table.category}</p>
+                      </td>
                       <td className="p-4 border-b border-blue-gray-50 text-center">
-                        <div>
-                          <NavLink
-                            to={`/dashboard/update/${table._id}`}
-                            className="flex gap-2 justify-center items-center border bg-[#3761bf] hover:bg-[#10327c] rounded-lg p-2 text-white "
-                          >
-                            <FaEdit className="text-xl " />
-                            Add
-                          </NavLink>
+                        <div onClick={() => handleDelete(table._id)}>
+                          <button className="p-2 border rounded-lg  bg-[#3761bf] hover:bg-[#10327c]">
+                            <MdOutlineDeleteOutline className="text-2xl text-white" />
+                          </button>
                         </div>
                       </td>
                     </tr>

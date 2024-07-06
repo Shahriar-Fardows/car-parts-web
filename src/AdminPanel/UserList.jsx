@@ -1,16 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import useAxios from "../Hooks/useAxios";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Swal from "sweetalert2";
-import useAuthProvider from "../Hooks/useAuthProvider";
+import { deleteUser, getAuth } from "firebase/auth";
+import app from "../Firebase/Firebase";
 // import { NavLink } from "react-router-dom";
 // import { FaEdit } from "react-icons/fa";
 
 const UserList = () => {
   const axios = useAxios();
+   const auth = getAuth(app)
   //   const [user, setUser] = useState([]);
   const [items, setItems] = useState([]);
-  const { deleted } = useAuthProvider();
 
   //   useEffect(() => {
   //     axios
@@ -48,7 +50,7 @@ const UserList = () => {
         const res = await axios.delete(`/user-deleted/${table._id}`);
         // console.log(res);
         if (res.data.deletedCount > 0) {
-          deleted();
+          deleteUser(auth.currentUser)
           fetchItems();
           Swal.fire({
             title: "Deleted!",

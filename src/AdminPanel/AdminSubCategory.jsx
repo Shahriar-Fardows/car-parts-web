@@ -5,29 +5,35 @@ import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const AdminSubCategory = () => {
+  const axios = useAxios();
+  const [user, setUser] = useState([]);
 
-    const axios = useAxios();
-    const [user, setUser] = useState([]);
-  
-    useEffect(() => {
-      axios
-        .get("/Category-list")
-        .then((res) => {
-          setUser(res?.data);
-          // console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, [axios]);
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
+  const fetchItems = async () => {
+    const response = await axios.get("/category");
+    setUser(response.data);
+  };
 
-    return (
-        <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6">
+  return (
+    <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6">
       <section>
-        <h1 className="text-3xl font-bold ">All Sub Category</h1>
+        <div className="flex justify-between gap-4 px-10">
+          <h1 className="text-3xl font-bold ">All Sub Category</h1>
+          <div>
+            <NavLink
+              to={`/admin/added-sub-category`}
+              className="flex gap-2 justify-center items-center border bg-[#3761bf] hover:bg-[#10327c] rounded-lg p-2 text-white "
+            >
+              <FaEdit className="text-xl " />
+              Add
+            </NavLink>
+          </div>
+        </div>
         {/* table for shoe data */}
-        <div>
+        <div className="mt-8">
           <div className="p-6 overflow-scroll px-0">
             <table className="mt-4 w-full min-w-max table-auto text-left">
               <thead>
@@ -49,7 +55,7 @@ const AdminSubCategory = () => {
                   </th>
                   <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
                     <p className="text-sm text-blue-gray-900  font-semibold leading-none opacity-70">
-                      Action
+                      category
                     </p>
                   </th>
                   <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
@@ -83,16 +89,8 @@ const AdminSubCategory = () => {
                       <td className="p-4 border-b border-blue-gray-50">
                         <p>{table.name}</p>
                       </td>
-                      <td className="p-4 border-b border-blue-gray-50 text-center">
-                        <div>
-                          <NavLink
-                            to={`/dashboard/update/${table._id}`}
-                            className="flex gap-2 justify-center items-center border bg-[#3761bf] hover:bg-[#10327c] rounded-lg p-2 text-white "
-                          >
-                            <FaEdit className="text-xl " />
-                            Add
-                          </NavLink>
-                        </div>
+                      <td className="p-4 border-b border-blue-gray-50">
+                        <p>{table.category}</p>
                       </td>
                       <td className="p-4 border-b border-blue-gray-50">
                         <div>
@@ -110,7 +108,7 @@ const AdminSubCategory = () => {
         </div>
       </section>
     </div>
-    );
+  );
 };
 
 export default AdminSubCategory;

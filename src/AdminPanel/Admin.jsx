@@ -170,7 +170,7 @@ const Admin = () => {
   return (
     <div>
       <div className="bg-white mt-4">
-        <header className=" bg-white px-5 inset-x-0 top-4 z-30 mx-auto w-full max-w-screen-md  md:top-6 ">
+        <header className=" bg-white px-12 inset-x-0 top-4 z-30 mx-auto w-full max-w-screen-md  md:top-6 ">
           <div className="px-4">
             <div className="flex items-center justify-between">
               <div className="flex shrink-0">
@@ -209,7 +209,7 @@ const Admin = () => {
           <button
             title="Side navigation"
             type="button"
-            className={`visible fixed left-12 top-24 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 lg:hidden ${
+            className={`visible fixed left-1 top-4 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 lg:hidden ${
               isSideNavOpen
                 ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45 "
                 : ""

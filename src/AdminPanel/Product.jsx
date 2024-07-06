@@ -1,24 +1,53 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FaEdit } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const Product = () => {
   const axios = useAxios();
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/sub-category")
-      .then((res) => {
-        setUser(res?.data);
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    const response = await axios.get("/sub-category");
+    setUser(response.data);
+  };
+
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axios.delete(`/sub-category-deleted/${id}`);
         // console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [axios]);
+        if (res.data.deletedCount > 0) {
+          fetchItems();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
+  };
+
+
+
+
   return (
     <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6">
       <section>
@@ -26,7 +55,7 @@ const Product = () => {
           <h1 className="text-3xl font-bold ">All Sub Category</h1>
           <div>
             <NavLink
-              to={`/dashboard/update`}
+              to={`/admin/added-product`}
               className="flex gap-2 justify-center items-center border bg-[#3761bf] hover:bg-[#10327c] rounded-lg p-2 text-white "
             >
               <FaEdit className="text-xl " />
@@ -103,7 +132,7 @@ const Product = () => {
                       <td className="p-4 border-b border-blue-gray-50 text-center">
                         <div>
                           <NavLink
-                            to={`/dashboard/update/${table._id}`}
+                            to={`/admin/product-edit/${table._id}`}
                             className="flex gap-2 justify-center items-center border bg-[#3761bf] hover:bg-[#10327c] rounded-lg p-2 text-white "
                           >
                             <FaEdit className="text-xl " />
@@ -112,7 +141,7 @@ const Product = () => {
                         </div>
                       </td>
                       <td className="p-4 border-b border-blue-gray-50">
-                        <div>
+                        <div onClick={()=>handleDelete(table._id)}>
                           <button className="p-2 border rounded-lg  bg-[#3761bf] hover:bg-[#10327c]">
                             <MdOutlineDeleteOutline className="text-2xl text-white" />
                           </button>
