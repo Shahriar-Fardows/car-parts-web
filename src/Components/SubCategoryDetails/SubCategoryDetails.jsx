@@ -6,11 +6,14 @@ import { Carousel } from "react-responsive-carousel";
 import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import useAxios from "../../Hooks/useAxios";
+import useAuthProvider from "../../Hooks/useAuthProvider";
+import Swal from "sweetalert2";
 
 const SubCategoryDetails = () => {
   const [category, setCategory] = useState({});
   const { id } = useParams();
   const axios = useAxios();
+  const {user} = useAuthProvider()
 
   useEffect(() => {
     axios
@@ -24,10 +27,37 @@ const SubCategoryDetails = () => {
       });
   }, [axios, id]);
 
-  console.log(category);
-  const { name, price, features, description, warranty, warning } =
+  const { name , price, features, description, warranty, warning } =
     category || {};
 
+  const handleAddToCart = async (product) => {
+      console.log(product);
+      const addToCart = {
+        name: product.name,
+        email: user?.email,
+        image: product.image[0],
+        price: product.price,
+        color: product.color,
+    };
+    console.log(addToCart);
+      const res = await axios.post("/add-to-cart", addToCart);
+      if (res.data.acknowledged) { 
+        Swal.fire({
+          title: "added To Cart !!!",
+          text: "Added To Cart successfully",
+          icon: "success",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "This Product AllReady Added!",
+        });
+      }
+    };
+  // add-to-cart
+  
+  
   return (
     <section>
       <div className="max-w-screen-xl mx-auto mt-8">
@@ -95,7 +125,7 @@ const SubCategoryDetails = () => {
                     </p>
                   </div>
                 </div>
-                <div className="hover:bg-black border bg-[#ef6f18] flex gap-2 items-center justify-center p-4 text-1xl text-white">
+                <div onClick={()=>handleAddToCart(category)} className="hover:bg-black border bg-[#ef6f18] flex gap-2 items-center justify-center p-4 text-1xl text-white">
                   <FaCartArrowDown className="text-2xl " /> Add To CArt{" "}
                 </div>
               </div>

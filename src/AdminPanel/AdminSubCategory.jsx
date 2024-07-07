@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import useAxios from "../Hooks/useAxios";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AdminSubCategory = () => {
   const axios = useAxios();
@@ -13,8 +15,34 @@ const AdminSubCategory = () => {
   }, []);
 
   const fetchItems = async () => {
-    const response = await axios.get("/category");
+    const response = await axios.get("/category-list");
     setUser(response.data);
+  };
+
+
+  // handleDelete
+  const handleDelete = async (id) => { 
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axios.delete(`/sub-category-list-deleted/${id}`);
+        if (res.data.deletedCount > 0) {
+          fetchItems();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
 
   return (
@@ -93,7 +121,7 @@ const AdminSubCategory = () => {
                         <p>{table.category}</p>
                       </td>
                       <td className="p-4 border-b border-blue-gray-50">
-                        <div>
+                        <div onClick={()=>handleDelete(table._id)}>
                           <button className="p-2 border rounded-lg  bg-[#3761bf] hover:bg-[#10327c]">
                             <MdOutlineDeleteOutline className="text-2xl text-white" />
                           </button>

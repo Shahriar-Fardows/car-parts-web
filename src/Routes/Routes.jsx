@@ -20,6 +20,7 @@ import Product from "../AdminPanel/Product";
 import CategoryAdded from "../AdminPanel/CategoryAdded";
 import AddedProduct from "../AdminPanel/AddedProduct";
 import ProductEdit from "../AdminPanel/ProductEdit";
+import AddedSubCategory from "../AdminPanel/AddedSubCategory";
 
 const Routes = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const Routes = createBrowserRouter([
       {
         path: "/admin/sub-category",
         element: <AdminSubCategory/>
+      },
+      {
+        path: "/admin/added-sub-category",
+        element: <AddedSubCategory/>
       },
       {
         path: "/admin/product",
