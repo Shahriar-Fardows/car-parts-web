@@ -7,7 +7,7 @@ const Error = () => {
         404
       </h1>
       <div className="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
-        Page Not Found
+        Page Not Found 
       </div>
       <button className="mt-5">
         <a className="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring">
