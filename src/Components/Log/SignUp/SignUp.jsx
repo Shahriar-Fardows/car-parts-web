@@ -25,13 +25,15 @@ const SignUp = () => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const date = e.target.date.value
     createUser(email, password)
       .then(() => {
         const user = {
           email: email,
           password: password,
           role: "user",
-          name: name
+          name: name,
+          date: date,
         };
           // post email or password save  on data base
           axios.post("save-user", user)
@@ -89,6 +91,16 @@ const SignUp = () => {
               type="text"
               name="name"
               placeholder="name"
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block mb-2 font-extrabold" htmlFor="">
+              Date Of Birth
+            </label>
+            <input
+              className="inline-block  p-4 w-full leading-6 text-lg font-extrabold placeholder-[#1F2937] bg-white shadow border-2 border-[#1F2937] rounded"
+              type="date"
+              name="date"
             />
           </div>
           <div className="mb-6">

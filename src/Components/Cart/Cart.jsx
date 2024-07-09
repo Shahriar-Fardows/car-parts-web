@@ -19,8 +19,8 @@ const Cart = () => {
     setData(response.data);
   };
 
-  const totalPrice = data?.reduce((pre, sum) => pre + sum.price, 0);
-  const mainPrice = totalPrice.toFixed(2);
+  const totalPrice = data?.reduce((pre, sum) => (pre +( sum.price * sum.quantity)), 0);
+  const mainPrice = (totalPrice).toFixed(2);
   // console.log(data);
 
   // handleDelete
@@ -75,7 +75,17 @@ const Cart = () => {
               </th>
               <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
                 <p className="text-sm text-blue-gray-900  font-bold leading-none opacity-70">
+                  Product Quantity
+                </p>
+              </th>
+              <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+                <p className="text-sm text-blue-gray-900  font-bold leading-none opacity-70">
                   Product Price
+                </p>
+              </th>
+              <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+                <p className="text-sm text-blue-gray-900  font-bold leading-none opacity-70">
+                  Total Price
                 </p>
               </th>
               <th className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
@@ -106,8 +116,14 @@ const Cart = () => {
                   <td className="p-4 border-b border-blue-gray-50">
                     <p>{table.name}</p>
                   </td>
+                  <td className="p-4 border-b font-bold border-blue-gray-50">
+                    <p>{table.quantity}</p>
+                  </td>
                   <td className="p-4 border-b border-blue-gray-50">
                     <p className="font-bold">{table.price} $</p>
+                  </td>
+                  <td className="p-4 border-b border-blue-gray-50">
+                    <p className="font-bold">{table.price * table.quantity} $</p>
                   </td>
                   <td
                     onClick={() => handleDelete(table._id)}

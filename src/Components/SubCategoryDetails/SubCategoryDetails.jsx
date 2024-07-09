@@ -1,6 +1,6 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useEffect, useState } from "react";
-import { FaCartArrowDown, FaRegStar } from "react-icons/fa";
+import { FaCartArrowDown } from "react-icons/fa";
 import { GiBowTieRibbon } from "react-icons/gi";
 import { Carousel } from "react-responsive-carousel";
 import { useParams } from "react-router-dom";
@@ -8,12 +8,15 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import useAxios from "../../Hooks/useAxios";
 import useAuthProvider from "../../Hooks/useAuthProvider";
 import Swal from "sweetalert2";
+import { IoMdStar } from "react-icons/io";
 
 const SubCategoryDetails = () => {
   const [category, setCategory] = useState({});
   const { id } = useParams();
   const axios = useAxios();
-  const {user} = useAuthProvider()
+  const { user } = useAuthProvider();
+  const [number, setNumber] = useState(1);
+  const [size, setSize] = useState("S");
 
   useEffect(() => {
     axios
@@ -27,37 +30,61 @@ const SubCategoryDetails = () => {
       });
   }, [axios, id]);
 
-  const { name , price, features, description, warranty, warning } =
-    category || {};
+  const {
+    name,
+    price,
+    features,
+    description,
+    warranty,
+    warning,
+    SKU,
+    Part_number,
+  } = category || {};
 
   const handleAddToCart = async (product) => {
-      console.log(product);
-      const addToCart = {
-        name: product.name,
-        email: user?.email,
-        image: product.image[0],
-        price: product.price,
-        color: product.color,
+    console.log(product);
+    const addToCart = {
+      name: product.name,
+      email: user?.email,
+      image: product.image[0],
+      price: product.price,
+      color: product.color,
+      size: size,
+      quantity: number 
+      
     };
     console.log(addToCart);
-      const res = await axios.post("/add-to-cart", addToCart);
-      if (res.data.acknowledged) { 
-        Swal.fire({
-          title: "added To Cart !!!",
-          text: "Added To Cart successfully",
-          icon: "success",
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "This Product AllReady Added!",
-        });
-      }
-    };
+    const res = await axios.post("/add-to-cart", addToCart);
+    if (res.data.acknowledged) {
+      Swal.fire({
+        title: "added To Cart !!!",
+        text: "Added To Cart successfully",
+        icon: "success",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "This Product AllReady Added!",
+      });
+    }
+  };
   // add-to-cart
-  
-  
+  // console.log(category);
+
+  const handleMinus = () => {
+    if (number > 1) {
+      setNumber(number - 1);
+    }
+  };
+
+  const handleSize = (e) => {
+    setSize(e.target.innerText);
+  };
+
+  console.log(category);
+  console.log(number);
+
   return (
     <section>
       <div className="max-w-screen-xl mx-auto mt-8">
@@ -73,38 +100,51 @@ const SubCategoryDetails = () => {
           </div>
           <div className="flex-1 space-y-3">
             <h1 className="text-3xl font-semibold">{name}</h1>
-            <p className="text-xl text-[#ef6f18] ">
+            <p className="text-xl text-[#3761bf] ">
               <span className="line-through ">{price + 50} $ USD</span>
               <span className="ml-4">{price} $ USD</span>
             </p>
             <div className="flex items-center gap-3">
               <div className="flex text-[#ef6f18]">
-                <FaRegStar />
-                <FaRegStar />
-                <FaRegStar />
-                <FaRegStar />
+                <IoMdStar />
+                <IoMdStar />
+                <IoMdStar />
+                <IoMdStar />
               </div>
-              No reviews
+              {4.9}
             </div>
             <hr className="mt-3 border-[#ef6f18]" />
             <p className="text-sm text ">{}...</p>
             <div>
-              <p className="flex items-center gap-4 hover:text-[#ef6f18]">
+              <p className="flex items-center gap-4 hover:text-[#3761bf]">
                 <GiBowTieRibbon className="text-2xl " />
                 <span className="underline">Size guide</span>
               </p>
               <div className="mt-8 flex gap-12 items-center">
                 <p className="underline text-xl ">size : </p>
-                <div className="flex  items-center justify-center">
+                <div
+                  onClick={handleSize}
+                  className="flex items-center justify-center"
+                >
                   <div
-                    className={`border w-12 size-12 flex items-center justify-center  text-white font-bold bg-black`}
+                    className={`border ${
+                      size == "S" ? "bg-black text-white" : ""
+                    }  w-12 size-12 flex items-center justify-center  font-bold `}
                   >
                     S
                   </div>
-                  <div className="border w-12 size-12 flex items-center justify-center">
+                  <div
+                    className={`border ${
+                      size == "M" ? "bg-black text-white" : ""
+                    }  w-12 size-12 flex items-center justify-center  font-bold `}
+                  >
                     M
                   </div>
-                  <div className="border w-12 size-12 flex items-center justify-center">
+                  <div
+                    className={`border ${
+                      size == "L" ? "bg-black text-white" : ""
+                    }  w-12 size-12 flex items-center justify-center  font-bold `}
+                  >
                     L
                   </div>
                 </div>
@@ -113,19 +153,28 @@ const SubCategoryDetails = () => {
                 <div className="flex">
                   <div className=" border-black border-2">
                     <div className="border w-14 text-center h-full text-2xl flex items-center justify-center">
-                      {}
+                      {number}
                     </div>
                   </div>
                   <div className=" w-12 text-center ">
-                    <p className="border-black border-2 hover:text-[#ef6f18] font-bold text-xl cursor-pointer">
+                    <p
+                      onClick={handleMinus}
+                      className="border-black border-2 hover:text-[#3761bf] font-bold text-xl cursor-pointer"
+                    >
                       -
                     </p>
-                    <p className="cursor-pointer border-black border-2 hover:text-[#ef6f18] font-bold text-xl">
+                    <p
+                      onClick={() => setNumber(number + 1)}
+                      className="cursor-pointer border-black border-2 hover:text-[#3761bf] font-bold text-xl"
+                    >
                       +
                     </p>
                   </div>
                 </div>
-                <div onClick={()=>handleAddToCart(category)} className="hover:bg-black border bg-[#ef6f18] flex gap-2 items-center justify-center p-4 text-1xl text-white">
+                <div
+                  onClick={() => handleAddToCart(category)}
+                  className="hover:bg-black border bg-[#3761bf] flex gap-2 items-center justify-center p-4 text-1xl text-white"
+                >
                   <FaCartArrowDown className="text-2xl " /> Add To CArt{" "}
                 </div>
               </div>
@@ -148,12 +197,16 @@ const SubCategoryDetails = () => {
             <div className="text-start space-y-3 mt-5">
               <h1 className="text-2xl font-semibold">Description : </h1>
               <p>{description}</p>
+              <h1 className="text-2xl font-semibold">Part Number : </h1>
+              <p>Part Number : {Part_number}</p>
             </div>
           </TabPanel>
           <TabPanel>
             <div className="text-start space-y-3">
-              <h1 className="text-2xl font-semibold">Features : </h1>
-              <p>{features}</p>
+              <h1 className="text-2xl font-semibold underline">Features : </h1>
+              <p className="whitespace-pre-wrap">{features}</p>
+              <h1 className="text-xl font-bold underline">SKU :</h1>
+              <p>SKU : {SKU}</p>
             </div>
           </TabPanel>
           <TabPanel>

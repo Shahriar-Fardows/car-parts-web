@@ -32,7 +32,7 @@ const SelectVehicle = () => {
         } items-center gap-6 mt-5`}
       >
         <div className="w-full">
-          <div className="border border-black p-3 flex items-center gap-3 rounded-lg">
+          <div className="border border-black px-3 py-2 flex items-center gap-3 rounded-lg">
             <h1 className="font-bold text-xl flex items-center gap-3">
               1 <span>|</span>
             </h1>
@@ -47,7 +47,7 @@ const SelectVehicle = () => {
           </div>
         </div>
         <div className="w-full">
-          <div className="border border-black p-3 flex items-center gap-3 rounded-lg">
+          <div className="border border-black px-3 py-2 flex items-center gap-3 rounded-lg">
             <h1 className="font-bold text-xl flex items-center gap-3">
               2 <span>|</span>
             </h1>
@@ -59,7 +59,7 @@ const SelectVehicle = () => {
           </div>
         </div>
         <div className="w-full">
-          <div className="border border-black p-3 flex items-center gap-3 rounded-lg">
+          <div className="border border-black px-3 py-2 flex items-center gap-3 rounded-lg">
             <h1 className="font-bold text-xl flex items-center gap-3">
               3 <span>|</span>
             </h1>
@@ -70,7 +70,7 @@ const SelectVehicle = () => {
             </select>
           </div>
         </div>
-        <div className="w-full cursor-pointer text-center  border rounded-lg bg-[#3761bf] hover:bg-[#15306b]">
+        <div className="w-[40%] cursor-pointer text-center  border rounded-lg bg-[#3761bf] hover:bg-[#15306b]">
           <button className="text-white py-4 font-bold">GO</button>
         </div>
       </div>
