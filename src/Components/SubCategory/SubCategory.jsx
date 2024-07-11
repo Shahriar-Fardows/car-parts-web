@@ -9,10 +9,12 @@ const SubCategory = () => {
   const [subCat, setSubCat] = useState([]);
   const { category } = useParams();
   const axios = useAxios();
+  const [search, setSearch] = useState("");
+  const [highTOLow, setHighTOLow] = useState("desc");
 
   useEffect(() => {
     axios
-      .get(`/sub-category?subCategory=${category}`)
+      .get(`/sub-category?subCategory=${category}&&name=${search}&&order=${highTOLow}`)
       .then((res) => {
         setSubCat(res?.data);
         // console.log(res);
@@ -20,7 +22,7 @@ const SubCategory = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [axios, category]);
+  }, [axios, category, search, highTOLow]);
 
   return (
     <section>
@@ -37,10 +39,10 @@ const SubCategory = () => {
       <section className="max-w-screen-xl mx-auto px-3 mt-12">
         <div className="flex flex-col md:flex-row gap-3">
           <div className="relative md:w-[30%]">
-            <input
+            <input onChange={(e)=>setSearch(e.target.value)}
               id="id-s03"
               type="search"
-              name="id-s03"
+              name="search"
               placeholder="Search here"
               aria-label="Search content"
               className="peer relative  w-full rounded border border-slate-200 px-4 pr-12 text-sm text-slate-500 outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
@@ -64,15 +66,15 @@ const SubCategory = () => {
             </svg>
             <div className="mt-5">
               <div className="relative my-6 ">
-                <select
+                <select onChange={(e)=>setHighTOLow(e.target.value)}
                   id="id-04"
                   name="id-04"
                   required
                   className="peer relative w-full appearance-none rounded border border-slate-200 bg-white px-4 text-sm text-slate-500 outline-none transition-all autofill:bg-white focus:border-emerald-500 focus-visible:outline-none focus:focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                 >
-                  <option value="" disabled selected></option>
-                  <option value="1">Low To High</option>
-                  <option value="2">High To Low</option>
+                  <option value=""disabled selected></option>
+                  <option value="desc">High To Low</option>
+                  <option value="ace">Low To High</option>
                 </select>
                 <label className="pointer-events-none absolute top-2.5 left-2 z-[1] px-2 text-sm text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-valid:-top-2 peer-valid:text-xs peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent">
                   Select an option
