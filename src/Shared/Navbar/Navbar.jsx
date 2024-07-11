@@ -153,8 +153,13 @@ const Navbar = () => {
               </NavLink>
             )}
 
-            <NavLink to="/cart">
+            <NavLink className="relative" to="/cart">
               <BsCart3 className="text-[1.5rem]" />
+              <div className="absolute -top-3 left-2">
+                <p className="bg-[#3761bf] text-sm font-bold text-white px-2 py-[2px] rounded-full">
+                  0
+                </p>
+              </div>
             </NavLink>
           </div>
         </div>

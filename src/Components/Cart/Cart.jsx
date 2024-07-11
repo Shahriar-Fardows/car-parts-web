@@ -19,12 +19,15 @@ const Cart = () => {
     setData(response.data);
   };
 
-  const totalPrice = data?.reduce((pre, sum) => (pre +( sum.price * sum.quantity)), 0);
-  const mainPrice = (totalPrice).toFixed(2);
+  const totalPrice = data?.reduce(
+    (pre, sum) => pre + sum.price * sum.quantity,
+    0
+  );
+  const mainPrice = totalPrice.toFixed(2);
   // console.log(data);
 
   // handleDelete
-  const handleDelete = async (id) => { 
+  const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -48,13 +51,10 @@ const Cart = () => {
     });
   };
 
-
   return (
     <div className="max-w-screen-xl mx-auto mt-6 px-4">
       <h1 className="text-center text-3xl font-bold ">All cart Products :</h1>
-      <div
-        className={`h-96 overflow-y-scroll mt-5`}
-      >
+      <div className={`h-96 overflow-y-scroll mt-5`}>
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -123,13 +123,15 @@ const Cart = () => {
                     <p className="font-bold">{table.price} $</p>
                   </td>
                   <td className="p-4 border-b border-blue-gray-50">
-                    <p className="font-bold">{table.price * table.quantity} $</p>
+                    <p className="font-bold">
+                      {table.price * table.quantity} $
+                    </p>
                   </td>
                   <td
                     onClick={() => handleDelete(table._id)}
                     className="p-4 border-b border-blue-gray-50"
                   >
-                    <button className="flex w-12 items-center text-white justify-center bg-red-500 p-1 rounded-lg cursor-pointer hover:bg-red-700">
+                    <button className="flex w-12 items-center text-white justify-center bg-[#3761bf] p-1 rounded-lg cursor-pointer hover:bg-[#0c4edb]">
                       X
                     </button>
                   </td>
@@ -149,7 +151,7 @@ const Cart = () => {
           <div className="mt-12 md:mt-0">
             <button
               // onClick={handleApply}
-              className="border p-3 ml-2 rounded-md px-12 bg-[#ef6f18] text-white font-bold hover:bg-[#a35b2b]"
+              className="border p-3 ml-2 rounded-md px-12 bg-[#3761bf] text-white font-bold hover:bg-[#124fd4]"
             >
               Apply
             </button>
@@ -157,13 +159,13 @@ const Cart = () => {
         </div>
         <div>
           <h1 className="text-xl font-bold uppercase mt-12 md:mt-0">
-            Total Price : <span className="text-[#ef6f18]">{mainPrice} $</span>
+            Total Price : <span className="text-[#3761bf]">{mainPrice} $</span>
           </h1>
         </div>
         <div className="flex items-center justify-center mt-12 md:mt-0">
           <button
             // onClick={handleApply}
-            className="border  p-3 ml-2 rounded-md px-12 bg-[#ef6f18] text-white font-bold hover:bg-[#a35b2b] flex items-center gap-4"
+            className="border  p-3 ml-2 rounded-md px-12 bg-[#3761bf] text-white font-bold hover:bg-[#1f54c6] flex items-center gap-4"
           >
             Purchase All <FaArrowRightLong />
           </button>
