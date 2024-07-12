@@ -1,23 +1,24 @@
-import { useEffect, useState } from "react";
-import useAxios from "../../Hooks/useAxios";
+
+import useAuthProvider from "../../Hooks/useAuthProvider";
 
 const Profile = () => {
-  const [user, setUser] = useState([]);
-  const axios = useAxios();
+  // const [user, setUser] = useState([]);
+  // const axios = useAxios();
+  const {user} = useAuthProvider()
 
-  useEffect(() => {
-    axios
-      .get(`/user-list`)
-      .then((res) => {
-        setUser(res?.data);
-        // console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [axios]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/user-list`)
+  //     .then((res) => {
+  //       setUser(res?.data);
+  //       // console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [axios]);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="max-w-screen-xl mx-auto px-4">
@@ -37,7 +38,7 @@ const Profile = () => {
           />
         </div>
         <div className="text-center mt-2">
-          <h2 className="font-semibold">{user.name}</h2>
+          <h2 className="font-semibold text-black">{user.email}</h2>
         </div>
       </div>
     </div>

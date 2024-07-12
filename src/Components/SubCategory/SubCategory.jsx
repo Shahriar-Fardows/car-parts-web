@@ -39,6 +39,7 @@ const SubCategory = () => {
       <section className="max-w-screen-xl mx-auto px-3 mt-12">
         <div className="flex flex-col md:flex-row gap-3">
           <div className="relative md:w-[30%]">
+            <div className="">
             <input onChange={(e)=>setSearch(e.target.value)}
               id="id-s03"
               type="search"
@@ -98,6 +99,7 @@ const SubCategory = () => {
                   />
                 </svg>
               </div>
+            </div>
             </div>
           </div>
           <div className="md:w-[70%]">

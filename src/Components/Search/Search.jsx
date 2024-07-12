@@ -26,9 +26,6 @@ const Search = () => {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-  console.log(subCat);
-  console.log(search);
-
   return (
     <div className="col-span-2 lg:mr-[8rem]  hidden md:block">
       <div className="max-w-md mx-auto">
@@ -71,7 +68,10 @@ const Search = () => {
             <div className="absolute p-4 top-12 z-50 w-full shadow-xl bg-white rounded-xl overflow-y-scroll h-[300px]">
               {subCat.map((item) => (
                 <div key={item._id}>
-                  <Link to={`/details/${item._id}`} className="flex items-center font-semibold p-4 hover:border rounded-lg hover:bg-slate-200">
+                  <Link
+                    to={`/details/${item._id}`}
+                    className="flex items-center font-semibold p-4 hover:border rounded-lg hover:bg-slate-200"
+                  >
                     <img className="w-12" src={item.image} alt="" />
                     <p>{item.name}</p>
                   </Link>

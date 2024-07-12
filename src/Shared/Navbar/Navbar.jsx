@@ -18,6 +18,7 @@ const Navbar = () => {
   const [categoryData, setCategory] = useState([]);
   const { user, LogOut } = useAuthProvider();
   const axios = useAxios();
+  const [cart, setCart] = useState([]);
 
   const logOut = () => {
     Swal.fire({
@@ -39,6 +40,21 @@ const Navbar = () => {
         console.log(err);
       });
   }, [axios]);
+
+  // cart data
+  useEffect(() => {
+    axios
+      .get(`/all-cart?=${user?.email}`)
+      .then((res) => {
+        setCart(res?.data);
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [axios, user]);
+
+  console.log(cart);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -157,7 +173,7 @@ const Navbar = () => {
               <BsCart3 className="text-[1.5rem]" />
               <div className="absolute -top-3 left-2">
                 <p className="bg-[#3761bf] text-sm font-bold text-white px-2 py-[2px] rounded-full">
-                  0
+                 {cart.length}
                 </p>
               </div>
             </NavLink>
