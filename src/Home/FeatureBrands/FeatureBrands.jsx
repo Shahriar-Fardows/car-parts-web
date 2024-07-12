@@ -1,23 +1,25 @@
-import Loading from "../../Shared/Loading/Loading";
+import useAxios from "../../Hooks/useAxios";
+// import Loading from "../../Shared/Loading/Loading";
 import { useEffect, useState } from "react";
 
 const FeatureBrands = () => {
   const [imageData, setImage] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const axios = useAxios();
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`https://carid-project-server.onrender.com/api/v1/image`)
-      .then((res) => res.json())
-      .then((data) => {
-        setImage(data);
-        setLoading(false);
+    axios
+      .get("/image")
+      .then((res) => {
+        setImage(res?.data);
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  }, []);
+  }, [axios]);
 
   // console.log(categoryData);
-
-  if (loading) return <Loading />;
 
   return (
     <div className="max-w-screen-xl mx-auto mt-12 px-3">

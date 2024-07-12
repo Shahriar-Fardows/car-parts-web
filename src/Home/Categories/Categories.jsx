@@ -4,6 +4,7 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import CategoryTab from "../../Components/CategoryTab/CategoryTab";
 
 const Categories = () => {
+  // 
 
   return (
     <section className="max-w-screen-xl mx-auto mt-12 px-4">
