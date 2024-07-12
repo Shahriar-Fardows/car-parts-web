@@ -21,9 +21,6 @@ const NavDrawer = ({ isOpen, toggleDrawer }) => {
                      
                     </div>
                 </div>
-
-
-
             </div>
 
         </div>
