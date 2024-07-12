@@ -36,49 +36,35 @@ const SubCategory = () => {
         <SubCategoryBanner />
       </div>
       {/* Show display Data */}
-      <section className="max-w-screen-xl mx-auto px-3 mt-12">
-        <div className="flex flex-col md:flex-row gap-3">
-          <div className="relative md:w-[30%]">
-            <div className="">
-            <input onChange={(e)=>setSearch(e.target.value)}
-              id="id-s03"
-              type="search"
-              name="search"
-              placeholder="Search here"
-              aria-label="Search content"
-              className="peer relative  w-full rounded border border-slate-200 px-4 pr-12 text-sm text-slate-500 outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="absolute right-4 top-2.5 h-5 w-5 cursor-pointer stroke-slate-400 peer-disabled:cursor-not-allowed"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              aria-hidden="true"
-              aria-label="Search icon"
-              role="graphics-symbol"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-            <div className="mt-5">
+      <section className="max-w-screen-xl mx-auto px-3 mt-10">
+        <div>
+          <div className="flex items-center justify-between">
+            <form onChange={(e) => setSearch(e.target.value)} className="w-[30vw] ">
+              <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                  </svg>
+                </div>
+                <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
+               
+              </div>
+            </form>
+            <div>
               <div className="relative my-6 ">
-                <select onChange={(e)=>setHighTOLow(e.target.value)}
+                <select onChange={(e) => setHighTOLow(e.target.value)}
                   id="id-04"
                   name="id-04"
                   required
                   className="peer relative w-full appearance-none rounded border border-slate-200 bg-white px-4 text-sm text-slate-500 outline-none transition-all autofill:bg-white focus:border-emerald-500 focus-visible:outline-none focus:focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
                 >
-                  <option value=""disabled selected></option>
+                  {/* <option value="" disabled selected></option>/ */}
                   <option value="desc">High To Low</option>
                   <option value="ace">Low To High</option>
                 </select>
                 <label className="pointer-events-none absolute top-2.5 left-2 z-[1] px-2 text-sm text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-valid:-top-2 peer-valid:text-xs peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent">
-                  Select an option
+                  Short by PRICE
                 </label>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -100,10 +86,10 @@ const SubCategory = () => {
                 </svg>
               </div>
             </div>
-            </div>
           </div>
-          <div className="md:w-[70%]">
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+
+          <div className="">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               {subCat.map((categories) => (
                 <SubCategoryCard
                   key={categories._id}
