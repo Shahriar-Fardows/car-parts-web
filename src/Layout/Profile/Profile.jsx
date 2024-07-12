@@ -6,20 +6,6 @@ const Profile = () => {
   // const axios = useAxios();
   const {user} = useAuthProvider()
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`/user-list`)
-  //     .then((res) => {
-  //       setUser(res?.data);
-  //       // console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [axios]);
-
-  // console.log(user);
-
   return (
     <div className="max-w-screen-xl mx-auto px-4">
       <div className="max-w-2xl p-4 mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
