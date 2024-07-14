@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useForm } from "react-hook-form";
 import useAxios from "../Hooks/useAxios";
@@ -11,11 +12,23 @@ const AddedProduct = () => {
   const axios = useAxios();
   const [user, setUser] = useState([]);
   const [user2, setUser2] = useState([]);
+  const [selectedYear, setSelectedYear] = useState("");
 
   useEffect(() => {
     fetchItems();
     fetchItems2();
   }, []);
+
+  const generateYears = () => {
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let year = 1913; year <= currentYear; year++) {
+      years.push({ year });
+    }
+    return years;
+  };
+
+  const years = generateYears();
 
   const fetchItems = async () => {
     const response = await axios.get("/category");
@@ -34,6 +47,7 @@ const AddedProduct = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    // console.log(data);
     const imageFile = { image: data.photo[0] };
     const res = await axios.post(image_hosting_api, imageFile, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -55,6 +69,11 @@ const AddedProduct = () => {
         color: data.color,
         shortDescription: data.shortDescription,
         SKU: data.SKU,
+        year: data.year,
+        make: data.make,
+        model: data.model,
+        trim: data.trim,
+        engine: data.engine
       };
       const result = await axios.post("/added-SubCategory", info);
       if (result.data.acknowledged) {
@@ -120,9 +139,7 @@ const AddedProduct = () => {
                   className="w-full bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block appearance-none"
                   {...register("category")}
                 >
-                  <option value="Selected Category">
-                    Selected Category
-                  </option>
+                  <option value="Selected Category">Selected Category</option>
                   {user.map((item) => (
                     <option key={item._id} value={item.category}>
                       {item.name}
@@ -321,6 +338,99 @@ const AddedProduct = () => {
                 />
                 {errors.size && <p className="text-red-600">SKU is Required</p>}
               </div>
+            </div>
+            <div className="flex flex-col md:flex-row gap-12 p-2">
+              <div className="mt-4 md:flex-[50%]">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Year
+                </label>
+                <select
+                  className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  name="year"
+                  id="year"
+                  // value={selectedYear}
+                  onChange={(e) => setSelectedYear(e.target.value)}
+                  {...register("year")}
+                >
+                  <option defaultValue="Year">
+                    Year
+                  </option>
+                  {years.map((item, idx) => (
+                    <option key={idx} value={item.year}>
+                      {item.year}
+                    </option>
+                  ))}
+                </select>
+                {errors.year && (
+                  <p className="text-red-600">year is Required</p>
+                )}
+              </div>
+              <div className="mt-4 md:flex-[50%]">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Make
+                </label>
+                <input
+                  className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  type="text"
+                  {...register("make", { required: true })}
+                  placeholder="Make"
+                  id="make"
+                  autoComplete="text"
+                />
+                {errors.make && (
+                  <p className="text-red-600">make is Required</p>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row gap-12 p-2">
+              <div className="mt-4 md:flex-[50%]">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Model
+                </label>
+                <input
+                  className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  type="text"
+                  {...register("model", { required: true })}
+                  placeholder="Car Model"
+                  id="model"
+                  autoComplete="text"
+                />
+                {errors.model && (
+                  <p className="text-red-600">Model is Required</p>
+                )}
+              </div>
+              <div className="mt-4 md:flex-[50%]">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Trim
+                </label>
+                <input
+                  className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  type="text"
+                  {...register("trim", { required: true })}
+                  placeholder="Trim"
+                  id="trim"
+                  autoComplete="text"
+                />
+                {errors.trim && (
+                  <p className="text-red-600">trim is Required</p>
+                )}
+              </div>
+            </div>
+            <div className="mt-4 px-2">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Engine
+              </label>
+              <input
+                className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                type="text"
+                {...register("engine", { required: true })}
+                placeholder="Engine"
+                id="engine"
+                autoComplete="text"
+              />
+              {errors.engine && (
+                <p className="text-red-600">engine is Required</p>
+              )}
             </div>
             <div className="mt-8 ">
               <button
