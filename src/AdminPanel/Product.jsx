@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import useAxios from "../Hooks/useAxios";
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import useAxios from "../Hooks/useAxios";
 
 const Product = () => {
   const axios = useAxios();
@@ -49,7 +49,7 @@ const Product = () => {
 
 
   return (
-    <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6">
+    <div className="">
       <section>
         <div className="flex justify-between items-center gap-3 px-7">
           <h1 className="text-3xl font-bold ">All Sub Category</h1>
