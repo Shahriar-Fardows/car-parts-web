@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 // import './NavDrawer.css'
 import { SlArrowRight } from "react-icons/sl";
-import logo from "../../../public/logo.png";
+import logo from "../../../public/logo_image.jpg";
 import { useEffect, useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 const DrawerLinks = () => {
