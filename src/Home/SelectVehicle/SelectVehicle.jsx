@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const SelectVehicle = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [carYear, setCarYear] = useState("")
 
   useEffect(() => {
     const handleScroll = () => {
@@ -135,6 +136,10 @@ const SelectVehicle = () => {
   ]
   
 
+  const handleGoBtn = () => {
+    
+  }
+
   return (
     <div className="max-w-screen-xl mx-auto border bg-[#e8eeff] dark:text-white text-black mt-12 rounded-lg p-10">
       <h1 className="text-2xl font-semibold">Select Your Vehicle</h1>
@@ -192,7 +197,7 @@ const SelectVehicle = () => {
             </select>
           </div>
         </div>
-        <div className="w-[40%] cursor-pointer text-center  border rounded-lg bg-[#3761bf] hover:bg-[#15306b]">
+        <div onClick={handleGoBtn} className="w-[40%] cursor-pointer text-center  border rounded-lg bg-[#3761bf] hover:bg-[#15306b]">
           <button className="text-white py-4 font-bold">GO</button>
         </div>
       </div>
