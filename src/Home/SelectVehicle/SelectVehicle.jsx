@@ -67,13 +67,13 @@ const SelectVehicle = () => {
 
     // Send vehicle details to the server
 
-    // axios.post("/added-vehicle", {
-    //   year: selectedYear,
-    //   make: selectedMake,
-    //   model: selectedModel,
-    //   trim: selectedTrim,
-    //   engine: selectedEngine,
-    // });
+    axios.post("/added-vehicle", {
+      year: selectedYear,
+      make: selectedMake,
+      model: selectedModel,
+      trim: selectedTrim,
+      engine: selectedEngine,
+    });
   };
 
   return (
