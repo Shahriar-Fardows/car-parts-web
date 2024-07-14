@@ -1,8 +1,8 @@
-import { useForm } from "react-hook-form";
-import useAxios from "../Hooks/useAxios";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxios from "../Hooks/useAxios";
 
 const imgageBBAPI = "957628e55aa3b5dfacc5f5a22107ba39";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${imgageBBAPI}`;
@@ -95,7 +95,7 @@ const ProductEdit = () => {
 
 
   return (
-    <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6">
+    <div className="">
       <section className="p-3 pb-8">
         <h1 className="text-center font-bold text-2xl mt-3 border-l-4 border-[#3761bf]">
           Add Product{" "}

@@ -17,7 +17,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6 ">
+    <div className="">
       <div className=" mx-auto">
         <div className=" rounded-3xl p-8 mb-5">
           <h1 className="text-3xl font-bold mb-10">

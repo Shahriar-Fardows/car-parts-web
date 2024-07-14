@@ -80,7 +80,7 @@ const Admin = () => {
 
       <li className="px-3">
         <NavLink
-          to="/admin/admin-home"
+          to="/admin/admin-list"
           className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-500 focus:bg-sky-50 aria-[current=page]:bg-sky-50 aria-[current=page]:text-sky-500 "
         >
           <div className="flex w-6 items-center self-center">
@@ -102,7 +102,7 @@ const Admin = () => {
             </svg>
           </div>
           <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-            Update Api
+            Admin List
           </div>
         </NavLink>
       </li>
@@ -321,8 +321,10 @@ const Admin = () => {
             }`}
             onClick={() => setIsSideNavOpen(false)}
           ></div>
+        </div >
+        <div className="mt-[6rem] lg:ml-[15rem] lg:mr-10 mx-10">
+          <Outlet />
         </div>
-        <Outlet />
       </div>
     </div>
   );
