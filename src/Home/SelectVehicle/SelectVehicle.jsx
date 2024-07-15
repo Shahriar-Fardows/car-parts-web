@@ -12,7 +12,7 @@ const SelectVehicle = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.pageYOffset >= 700);
+      setIsSticky(window.pageYOffset >= 500);
     };
 
     window.addEventListener("scroll", handleScroll);
