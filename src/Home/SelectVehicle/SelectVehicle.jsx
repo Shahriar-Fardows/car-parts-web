@@ -71,29 +71,27 @@ const SelectVehicle = () => {
       selectedEngine
     );
     // Send vehicle details to the server
-    const res = await axios.post("/added-vehicle", {
-      year: selectedYear,
-      make: selectedMake,
-      model: selectedModel,
-      trim: selectedTrim,
-      engine: selectedEngine,
-    });
+    // const res = await axios.post("/added-vehicle", {
+    //   year: selectedYear,
+    //   make: selectedMake,
+    //   model: selectedModel,
+    //   trim: selectedTrim,
+    //   engine: selectedEngine,
+    // });
 
-    axios.post("/added-vehicle", {
-      year: selectedYear,
-      make: selectedMake,
-      model: selectedModel,
-      trim: selectedTrim,
-      engine: selectedEngine,
-    });
+    // axios.post("/added-vehicle", {
+    //   year: selectedYear,
+    //   make: selectedMake,
+    //   model: selectedModel,
+    //   trim: selectedTrim,
+    //   engine: selectedEngine,
+    // });
   };
 
   // Api Query for Vehicle 5 tar jonno
   // http://localhost:5000/api/v1/sub-category?year=${year}&&make=${make}&&model=${model}&&trim=${trim}&&engine=${engine}
 
   // const handleGoBtn = () => {
-
-  // }
 
   return (
     <div className="border bg-[#e8eeff] dark:text-white text-black mt-12 rounded-lg p-10">
@@ -228,8 +226,11 @@ const SelectVehicle = () => {
             </select>
           </div>
         </div>
-        <div className="w-[40%] cursor-pointer text-center border rounded-lg bg-[#3761bf] hover:bg-[#15306b]">
-          <button className="text-white py-4 font-bold" type="submit">
+        <div type="submit" className="cursor-pointer text-center">
+          <button
+            className="text-white py-4 border px-28 rounded-lg font-bold bg-[#3761bf] hover:bg-[#15306b]"
+            type="submit"
+          >
             GO
           </button>
         </div>
