@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { deleteUser, getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
-import useAxios from "../Hooks/useAxios";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Swal from "sweetalert2";
-import { deleteUser, getAuth } from "firebase/auth";
 import app from "../Firebase/Firebase";
+import useAxios from "../Hooks/useAxios";
 // import { NavLink } from "react-router-dom";
 // import { FaEdit } from "react-icons/fa";
 
@@ -65,7 +65,7 @@ const UserList = () => {
   // console.log(user);
 
   return (
-    <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6">
+    <div className="">
       <section>
         <h1 className="text-3xl font-bold ">All User</h1>
         {/* table for shoe data */}

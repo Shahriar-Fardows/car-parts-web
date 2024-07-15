@@ -12,7 +12,7 @@ const SelectVehicle = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.pageYOffset >= 700);
+      setIsSticky(window.pageYOffset >= 500);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -79,7 +79,13 @@ const SelectVehicle = () => {
       engine: selectedEngine,
     });
 
-    console.log(res);
+    axios.post("/added-vehicle", {
+      year: selectedYear,
+      make: selectedMake,
+      model: selectedModel,
+      trim: selectedTrim,
+      engine: selectedEngine,
+    });
   };
 
   // Api Query for Vehicle 5 tar jonno

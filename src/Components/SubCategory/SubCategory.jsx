@@ -26,15 +26,16 @@ const SubCategory = () => {
 
   return (
     <section>
+      <div className="mt-8">
+        <SubCategoryBanner />
+      </div>
       <div className="max-w-screen-xl mx-auto px-3">
         <h1 className="font-bold text-2xl uppercase mt-4">
           {subCat[0]?.category} Parts
         </h1>
         <SelectVehicle />
       </div>
-      <div className="mt-8">
-        <SubCategoryBanner />
-      </div>
+
       {/* Show display Data */}
       <section className="max-w-screen-xl mx-auto px-3 mt-10">
         <div>
@@ -48,7 +49,7 @@ const SubCategory = () => {
                   </svg>
                 </div>
                 <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
-               
+
               </div>
             </form>
             <div>

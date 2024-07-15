@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import useAxios from "../Hooks/useAxios";
 import Swal from "sweetalert2";
+import useAxios from "../Hooks/useAxios";
 
 const CategoryAdded = () => {
   const axios = useAxios();
@@ -27,7 +27,7 @@ const CategoryAdded = () => {
     }
   };
   return (
-    <section className="md:max-w-screen-md lg:max-w-screen-lg mx-auto mt-36 lg:px-12 px-6 ">
+    <section className="">
       <h1 className="text-center font-bold text-2xl mt-3 border-l-4 border-[#3761bf]">
         Added category{" "}
       </h1>
